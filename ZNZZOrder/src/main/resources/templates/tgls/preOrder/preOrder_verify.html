@@ -18,12 +18,12 @@
 		<title>hb</title>
 
 		<!-- 公共样式 开始 -->
-		<link rel="stylesheet" type="text/css" href="css/base.css">
-		<link rel="stylesheet" type="text/css" href="fonts/iconfont.css">
-		<script type="text/javascript" src="framework/jquery-1.11.3.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="layui/css/layui.css">
-		<script type="text/javascript" src="layui/layui.js"></script>
-		<script src="framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<link rel="stylesheet" type="text/css" th:href="@{css/base.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{fonts/iconfont.css}">
+		<script type="text/javascript" th:src="@{framework/jquery-1.11.3.min.js}"></script>
+		<link rel="stylesheet" type="text/css" th:href="@{layui/css/layui.css}">
+		<script type="text/javascript" th:src="@{layui/layui.js}"></script>
+		<script th:src="@{framework/cframe.js}"></script><!-- 仅供所有子页面使用 -->
 		<!-- 公共样式 结束 -->
 
 	</head>
@@ -81,8 +81,8 @@
 
 						<td th:text="${order.note}"></td>
 						<td>
-							<a class="layui-btn layui-btn-xs" th:href="@{prePlanOrderVerify/${order.orderId}/3}">通过</a>
-							<a class="layui-btn layui-btn-xs" th:href="@{prePlanOrderVerify/${order.orderId}/4}">拒绝</a>
+							<a class="layui-btn layui-btn-xs" th:href="@{'/prePlanOrderVerify/'+${order.orderId}+'/3'}">通过</a>
+							<a class="layui-btn layui-btn-xs" th:href="@{'/prePlanOrderVerify/'+${order.orderId}+'/4'}">拒绝</a>
 
 						</td>
 					</tr>

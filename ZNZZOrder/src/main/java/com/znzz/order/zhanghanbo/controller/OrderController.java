@@ -29,7 +29,7 @@ public class OrderController {
             e.printStackTrace();
         }
 
-        return "tgls/index";
+        return "tgls/preOrder/preOrder_add";
     }
     @GetMapping("/preOrderList")
     public String getOrderList(Model model){
@@ -44,8 +44,11 @@ public class OrderController {
         return "tgls/preOrder/preOrder_verify";
     }
     @GetMapping(value = "/prePlanOrderVerify/{orderId}/{status}")
-    public String modifyStatus(@PathVariable String orderId, @PathVariable Integer status ){
+    public String modifyStatus(@PathVariable String orderId, @PathVariable Integer status ,Model model){
         orderService.modifyStatus(orderId,status);
-        return "tgls/preOrder/preOrder_verify";
+        /*List<Order> orderList=orderService.getPrePlanOrderList();
+        model.addAttribute("orderlist",orderList);
+        return "tgls/preOrder/preOrder_verify";*/
+        return "redirect:/preOrderVerify";
     }
 }
