@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="hb" />
+		<!-- 作者 -->
+		<meta name="revised" content="hb" />
+		<!-- 定义页面的最新版本 -->
+		<meta name="description" content="网站简介" />
+		<!-- 网站简介 -->
+		<meta name="keywords" content="搜索关键字，以半角英文逗号隔开" />
+		<title>订单管理</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="stylesheet" type="text/css" href="../css/base.css">
+		<link rel="stylesheet" type="text/css" href="../fonts/iconfont.css">
+		<script type="text/javascript" src="../framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+		<script type="text/javascript" src="../layui/layui.js" ></script>
+		<script src="../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<!-- 公共样式 结束 -->
+		
+		<!--报表-->
+		<script type="text/javascript" src="../framework/echarts.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/backHome.css">
+		<!--[if lte IE 9]>
+	      	<script src="../framework/html5shiv.min.js"></script>
+	      	<script src="../framework/respond.min.js"></script>
+		<![endif]-->
+		<script type="text/javascript" src="../js/backHome.js" ></script>
+	</head>
+
+	<body>
+	<div class="x-body layui-anim layui-anim-up">
+       		 <blockquote class="layui-elem-quote">欢迎登录订单管理系统
+           			 <br /><br />
+            			<p id="currentTime"></p>
+        		</blockquote>	
+			<!-- 全屏按钮 - 开始 -->
+			<i class="iconfont icon-quanping fullScreenBut" onclick="fullScreenClick()" draggable="true" ondragstart="fullScreenDrag(event)"></i>
+			<!-- 全屏按钮 - 结束 -->
+		</div>
+		
+		<script>
+			var _hmt = _hmt || [];
+        (function() {
+        	var current_time =  document.getElementById("currentTime");
+            var date = new Date();
+    		var seperator1 = "-";
+    		var seperator2 = ":";
+    		var month = date.getMonth() + 1<10? "0"+(date.getMonth() + 1):date.getMonth() + 1;
+    		var strDate = date.getDate()<10? "0" + date.getDate():date.getDate();
+    		var currentdate = date.getFullYear() + seperator1  + month  + seperator1  + strDate
+    			+ " "  + date.getHours()  + seperator2  + date.getMinutes()
+    			;
+    		current_time.innerHTML = "当前登录时间：" + currentdate;
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+		</script> 
+	</body>
+</html>
