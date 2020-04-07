@@ -29,8 +29,8 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/preOrderAdd").setViewName("tgls/preOrder/preOrder_add");
 
 
-        registry.addViewController("/returnOrderList").setViewName("tgls/base/base_customList");
-        registry.addViewController("/returnApply").setViewName("tgls/goodsManage/goods_list");
+        //registry.addViewController("/test1").setViewName("tgls/returnOrder/returnOrder_list");
+        registry.addViewController("/test2").setViewName("tgls/goodsManage/goods_list");
         registry.addViewController("/goodsUpdate").setViewName("tgls/goodsManage/goods_update");
         registry.addViewController("/specificationsList").setViewName("tgls/goodsManage/specifications_list");
         registry.addViewController("/frameindex").setViewName("tgls/index");

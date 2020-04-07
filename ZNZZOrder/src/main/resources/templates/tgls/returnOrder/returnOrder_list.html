@@ -18,12 +18,12 @@
 		<title>hb</title>
 
 		<!-- 公共样式 开始 -->
-		<link rel="stylesheet" type="text/css" href="css/base.css" th:href="@{/css/base.css}">
-		<link rel="stylesheet" type="text/css" href="fonts/iconfont.css" th:href="@{/fonts/iconfont.css}">
-		<script type="text/javascript" src="framework/jquery-1.11.3.min.js" th:href="@{/framework/jquery-1.11.3.min.js}"></script>
-		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"  th:href="@{/layui/css/layui.css}">
-		<script type="text/javascript" src="layui/layui.js"  th:href="@{/layui/layui.js}"></script>
-		<script src="framework/cframe.js"  th:href="@{/framework/cframe.js}"></script><!-- 仅供所有子页面使用 -->
+		<link rel="stylesheet" type="text/css" href="css/base.css">
+		<link rel="stylesheet" type="text/css" href="fonts/iconfont.css">
+		<script type="text/javascript" src="framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+		<script type="text/javascript" src="layui/layui.js"></script>
+		<script src="framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
 		<!-- 公共样式 结束 -->
 
 	</head>
@@ -56,34 +56,36 @@
 			<table class="layui-table">
 				<thead>
 					<tr>
+						<th>退单编号</th>
 						<th>订单编号</th>
-						<th>客户编号</th>
-						<th>订单负责人</th>
-						<th>下单日期</th>
-						<th>预期完成时间</th>
-						<th>订单来源</th>
-						<th>订单状态</th>
-						<th>总价</th>
-						<th>操作</th>
+						<th>产品编号</th>
+						<th>退货数量</th>
+						<th>发起日期</th>
+						<th>完成时间</th>
+						<th>审核人</th>
+						<th>退货原因</th>
+
+						<!--<th>操作</th>-->
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="order:${orderlist}">
+					<tr th:each="order:${returnorderlist}">
+						<td th:text="${order.rorderId}"></td>
 						<td th:text="${order.orderId}"></td>
-						<td>[[${order.customerId}]]</td>
+						<td>[[${order.productId}]]</td>
+						<td th:text="${order.rorderNum}"></td>
+
+						<td th:text="${#dates.format(order.startDate, 'yyyy-MM-dd HH:mm')}"></td>
+						<td th:text="${#dates.format(order.endDate, 'yyyy-MM-dd HH:mm')}"></td>
+
 						<td th:text="${order.employeeId}"></td>
+						<td th:text="${order.rorderReason}"></td>
 
-						<td th:text="${#dates.format(order.orderDate, 'yyyy-MM-dd HH:mm')}"></td>
-						<td th:text="${#dates.format(order.expectDate, 'yyyy-MM-dd HH:mm')}"></td>
 
-						<td th:text="${order.sourceType}"></td>
-						<td th:text="${order.status}"></td>
+						<!--<td>-->
+							<!--<a class="layui-btn layui-btn-xs" href="#">退单详情</a>-->
 
-						<td th:text="${order.totalPrice}"></td>
-						<td>
-							<button class="layui-btn layui-btn-xs" th:onclick="orderproduct([[${order.orderId}]])">订单详情</button>
-
-						</td>
+						<!--</td>-->
 					</tr>
 					
 				</tbody>
@@ -107,23 +109,6 @@
 					    }
 					});
 				});
-                function orderproduct(orderId){
-                    layui.use('layer', function() {
-                        var layer = layui.layer;
-
-                        //iframe层-父子操作
-                        layer.open({
-							title:"订单详情",
-                            type: 2,
-                            area: ['70%', '60%'],
-                            fixed: false, //不固定
-                            maxmin: true,
-                            content: 'preOrderProductList/'+orderId
-							//content:'goodsUpdate'
-                        });
-                    });
-
-                }
 			</script>
 		</div>
 	</body>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znzz.order.zhanghanbo.mapper.ReturnOrderMapper">
+  <resultMap id="BaseResultMap" type="com.znzz.order.zhanghanbo.entities.ReturnOrder">
+    <id column="rorder_id" jdbcType="VARCHAR" property="rorderId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="rorder_num" jdbcType="REAL" property="rorderNum" />
+    <result column="rorder_reason" jdbcType="VARCHAR" property="rorderReason" />
+    <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="employee_id" jdbcType="VARCHAR" property="employeeId" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    rorder_id, order_id, product_id, rorder_num, rorder_reason, start_date, employee_id, 
+    note, end_date
+  </sql>
+  <select id="selectByExample" parameterType="com.znzz.order.zhanghanbo.entities.ReturnOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rorder_list
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rorder_list
+    where rorder_id = #{rorderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from rorder_list
+    where rorder_id = #{rorderId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.znzz.order.zhanghanbo.entities.ReturnOrderExample">
+    delete from rorder_list
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.znzz.order.zhanghanbo.entities.ReturnOrder">
+    insert into rorder_list (rorder_id, order_id, product_id, 
+      rorder_num, rorder_reason, start_date, 
+      employee_id, note, end_date
+      )
+    values (#{rorderId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, 
+      #{rorderNum,jdbcType=REAL}, #{rorderReason,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP}, 
+      #{employeeId,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{endDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.znzz.order.zhanghanbo.entities.ReturnOrder">
+    insert into rorder_list
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rorderId != null">
+        rorder_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="rorderNum != null">
+        rorder_num,
+      </if>
+      <if test="rorderReason != null">
+        rorder_reason,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="employeeId != null">
+        employee_id,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rorderId != null">
+        #{rorderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="rorderNum != null">
+        #{rorderNum,jdbcType=REAL},
+      </if>
+      <if test="rorderReason != null">
+        #{rorderReason,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="employeeId != null">
+        #{employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.znzz.order.zhanghanbo.entities.ReturnOrderExample" resultType="java.lang.Long">
+    select count(*) from rorder_list
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update rorder_list
+    <set>
+      <if test="record.rorderId != null">
+        rorder_id = #{record.rorderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productId != null">
+        product_id = #{record.productId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rorderNum != null">
+        rorder_num = #{record.rorderNum,jdbcType=REAL},
+      </if>
+      <if test="record.rorderReason != null">
+        rorder_reason = #{record.rorderReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startDate != null">
+        start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.employeeId != null">
+        employee_id = #{record.employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.note != null">
+        note = #{record.note,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endDate != null">
+        end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update rorder_list
+    set rorder_id = #{record.rorderId,jdbcType=VARCHAR},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      product_id = #{record.productId,jdbcType=VARCHAR},
+      rorder_num = #{record.rorderNum,jdbcType=REAL},
+      rorder_reason = #{record.rorderReason,jdbcType=VARCHAR},
+      start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      employee_id = #{record.employeeId,jdbcType=VARCHAR},
+      note = #{record.note,jdbcType=VARCHAR},
+      end_date = #{record.endDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.znzz.order.zhanghanbo.entities.ReturnOrder">
+    update rorder_list
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="rorderNum != null">
+        rorder_num = #{rorderNum,jdbcType=REAL},
+      </if>
+      <if test="rorderReason != null">
+        rorder_reason = #{rorderReason,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="employeeId != null">
+        employee_id = #{employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where rorder_id = #{rorderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.znzz.order.zhanghanbo.entities.ReturnOrder">
+    update rorder_list
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=VARCHAR},
+      rorder_num = #{rorderNum,jdbcType=REAL},
+      rorder_reason = #{rorderReason,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      employee_id = #{employeeId,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      end_date = #{endDate,jdbcType=TIMESTAMP}
+    where rorder_id = #{rorderId,jdbcType=VARCHAR}
+  </update>
+</mapper>

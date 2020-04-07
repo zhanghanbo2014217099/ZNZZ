@@ -18,12 +18,12 @@
 		<title>hb</title>
 
 		<!-- 公共样式 开始 -->
-		<link rel="stylesheet" type="text/css" href="css/base.css" th:href="@{/css/base.css}">
-		<link rel="stylesheet" type="text/css" href="fonts/iconfont.css" th:href="@{/fonts/iconfont.css}">
-		<script type="text/javascript" src="framework/jquery-1.11.3.min.js" th:href="@{/framework/jquery-1.11.3.min.js}"></script>
-		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"  th:href="@{/layui/css/layui.css}">
-		<script type="text/javascript" src="layui/layui.js"  th:href="@{/layui/layui.js}"></script>
-		<script src="framework/cframe.js"  th:href="@{/framework/cframe.js}"></script><!-- 仅供所有子页面使用 -->
+		<link rel="stylesheet" type="text/css" href="css/base.css">
+		<link rel="stylesheet" type="text/css" href="fonts/iconfont.css">
+		<script type="text/javascript" src="framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+		<script type="text/javascript" src="layui/layui.js"></script>
+		<script src="framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
 		<!-- 公共样式 结束 -->
 
 	</head>
@@ -81,7 +81,7 @@
 
 						<td th:text="${order.totalPrice}"></td>
 						<td>
-							<button class="layui-btn layui-btn-xs" th:onclick="orderproduct([[${order.orderId}]])">订单详情</button>
+							<button class="layui-btn layui-btn-xs" th:onclick="returnOrder([[${order.orderId}]])">退单申请</button>
 
 						</td>
 					</tr>
@@ -107,19 +107,19 @@
 					    }
 					});
 				});
-                function orderproduct(orderId){
+                function returnOrder(orderId){
                     layui.use('layer', function() {
                         var layer = layui.layer;
 
                         //iframe层-父子操作
                         layer.open({
-							title:"订单详情",
+                            title:"订单详情",
                             type: 2,
                             area: ['70%', '60%'],
                             fixed: false, //不固定
                             maxmin: true,
-                            content: 'preOrderProductList/'+orderId
-							//content:'goodsUpdate'
+                            content: 'returnOrderProductList/'+orderId
+                            //content:'goodsUpdate'
                         });
                     });
 
