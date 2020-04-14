@@ -32,21 +32,14 @@
 	<body>
 		<div class="cBody">
 			<form class="layui-form" action="">
-				<div class="console">
-					<div class="layui-form-item">
-						<a class="layui-btn" onclick="addCustomList('customList')">新增</a>
-					</div>
-				</div>
+
 				
-				<table id="customList" class="layui-table">
+				<table id="productList" class="layui-table">
 					<thead>
 						<tr>
-							<th>分管名称</th>
-							<th>所属区域</th>
-							<th>负责人</th>
-							<th>联系方式</th>
-							<th>传真</th>
-							<th>邮箱</th>
+							<th>产品编号</th>
+							<th>产品数量</th>
+
 							<th>操作</th>
 						</tr>
 					</thead>
@@ -54,25 +47,12 @@
 						<tr>
 							<td>龙九山</td>
 							<td>无锡市</td>
-							<td>龙九山</td>
-							<td>18600001111</td>
-							<td>028-6666666</td>
-							<td>123456789@qq.com</td>
+
 							<td>
 								<a class="layui-btn layui-btn-xs" onclick="delCustomList(this)">删除</a>
 							</td>
 						</tr>
-						<tr>
-							<td>龙九山</td>
-							<td>无锡市</td>
-							<td>龙九山</td>
-							<td>18600001111</td>
-							<td>028-6666666</td>
-							<td>123456789@qq.com</td>
-							<td>
-								<a class="layui-btn layui-btn-xs" onclick="delCustomList(this)">删除</a>
-							</td>
-						</tr>
+
 						
 					</tbody>
 				</table>
@@ -82,43 +62,7 @@
 			//根据2018.03.01日 张家港客户需求改版的要求，在新的后台框架中提供以下功能
 			//此功能只适用与提前加载后，进行搜索；
 
-			//新增
-			function addCustomList(id){
-				var str = '<tr>'+
-							'<td>'+
-							    '<select class="newSelectSearch" name="modules" lay-verify="required" lay-search="" lay-filter="selectFilter">'+
-						          '<option value="">直接选择或搜索选择</option>'+
-						        '</select>'+
-							'</td>'+
-							'<td>'+
-							    '<input type="tel" name="phone" lay-verify="required" autocomplete="off" class="layui-input">'+
-							'</td>'+
-							'<td>'+
-							    '<input type="tel" name="phone" lay-verify="required" autocomplete="off" class="layui-input">'+
-							'</td>'+
-							'<td>'+
-							    '<input type="tel" name="phone" lay-verify="required" autocomplete="off" class="layui-input">'+
-							'</td>'+
-							'<td>'+
-							    '<input type="tel" name="phone" lay-verify="required" autocomplete="off" class="layui-input">'+
-							'</td>'+
-							'<td>'+
-							    '<input type="tel" name="phone" lay-verify="required" autocomplete="off" class="layui-input">'+
-							'</td>'+
-							'<td>'+
-								'<a class="layui-btn layui-btn-xs" onclick="delCustomList(this)">删除</a>'+
-							'</td>'+
-						'</tr>';
-				$("#"+id).append(str);
-				
-				layui.use(['form','laydate'], function() {
-					var form = layui.form;
-					form.render();
-				});
-				//重新初始化Iframe的高度
-				cframeInit();
-			}
-			
+
 			//删除
 			function delCustomList(_this){
 				layui.use(['form','laydate'], function() {

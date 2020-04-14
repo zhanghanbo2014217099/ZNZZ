@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="hb" />
+		<!-- 作者 -->
+		<meta name="revised" content="hb" />
+		<!-- 定义页面的最新版本 -->
+		<meta name="description" content="网站简介" />
+		<!-- 网站简介 -->
+		<meta name="keywords" content="搜索关键字，以半角英文逗号隔开" />
+		<title>订单管理系统</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="stylesheet" type="text/css" href="css/base.css">
+		<link rel="stylesheet" type="text/css" href="fonts/iconfont.css">
+		<script type="text/javascript" src="framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+		<script type="text/javascript" src="layui/layui.js"></script>
+		<script src="framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<!-- 公共样式 结束 -->
+		
+		<style>
+			.layui-form{
+				margin-right: 30%;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="cBody">
+			<div class="layui-row">
+					<input id="ifmsg" th:value="${msg}" type="hidden">
+					<div  class="layui-form" >
+						<!--<div class="layui-form-item">-->
+						<!--<label class="layui-form-label">客户编号</label>-->
+						<!--<div class="layui-input-inline shortInput">-->
+						<!--<input type="text" name="customerId"  autocomplete="off" class="layui-input">-->
+						<!--</div>-->
+						<!--</div>-->
+						<div class="layui-form-item">
+							<label class="layui-form-label">产品种类</label>
+							<div>
+								<div class="layui-input-inline shortInput">
+									<!-- 下拉框 -->
+									<select id="productId">
+										<option value="1">木柱</option>
+										<option value="2">木板</option>
+										<option value="3">方砖</option>
+										<option value="4">地板</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">产品数量</label>
+							<div class="layui-input-inline shortInput">
+								<input type="number" id="productNum" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+
+						<!--<div class="layui-form-item">-->
+						<!--<label class="layui-form-label">预期日期</label>-->
+						<!--<div class="layui-input-inline shortInput">-->
+						<!--<input type="text" name="expectDate"  autocomplete="off" class="layui-input">-->
+						<!--</div>-->
+						<!--</div>-->
+						<!---->
+
+						<!--<div class="layui-form-item">-->
+						<!--<label class="layui-form-label">订单负责人</label>-->
+						<!--<div class="layui-input-inline shortInput">-->
+						<!--<input type="text" name="employeeId"  autocomplete="off" class="layui-input">-->
+						<!--</div>-->
+						<!--</div>-->
+						<!--<div class="layui-form-item">-->
+						<!--<label class="layui-form-label">备注</label>-->
+						<!--<div class="layui-input-inline shortInput">-->
+						<!--<input type="text" name="note"  autocomplete="off" class="layui-input">-->
+						<!--</div>-->
+						<!--</div>-->
+
+
+
+						<!--	<div class="layui-form-item">
+                                <label class="layui-form-label">登录密码</label>
+                                <div class="layui-input-inline shortInput">
+                                    <input type="password" name="password" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">确认密码</label>
+                                <div class="layui-input-inline shortInput">
+                                    <input type="password" name="password2" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">电话</label>
+                                <div class="layui-input-inline shortInput">
+                                    <input type="text" name="phone" required lay-verify="required|phone" placeholder="例：13000000000" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">传真</label>
+                                <div class="layui-input-inline shortInput">
+                                    <input type="text" name="title" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">邮箱</label>
+                                <div class="layui-input-inline shortInput">
+                                    <input type="text" name="title" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item layui-form-text">
+                                <label class="layui-form-label">备注</label>
+                                <div class="layui-input-block">
+                                    <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">是否开通</label>
+                                <div class="layui-input-block">
+                                    <input type="radio" name="sex" value="nan" title="启用" checked>
+                                    <input type="radio" name="sex" value="nv" title="禁用">
+                                </div>
+                            </div> -->
+
+
+
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<!--<button class="layui-btn" lay-submit lay-filter="submitBut">立即提交</button>-->
+								<!--<button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
+								<button class="layui-btn layui-btn-xs" onclick="addProductList('productList')">添加产品</button>
+							</div>
+						</div>
+					</div>
+			</div>
+			<div class="layui-row">
+					<form class="layui-form" th:action="@{/testProduct}" id="productListForm" method="post">
+
+
+						<table id="productList" class="layui-table">
+							<thead>
+							<tr>
+								<th>产品编号</th>
+								<th>产品数量</th>
+
+								<th>操作</th>
+							</tr>
+							</thead>
+							<tbody>
+
+
+
+							</tbody>
+						</table>
+						<div class="layui-col-md4 layui-col-md-offset5">
+								<button class="layui-btn" lay-submit lay-filter="submitBut">确定商品，填写订单信息</button>
+						</div>
+
+					</form>
+			</div>
+
+
+		</div>
+		<script>
+			window.onload=function () {
+				var msg=$("#ifmsg").val();
+				if(msg!=''&&msg!=null&&msg!=undefined){
+
+                    layer.open({
+
+                        content: msg
+                    });
+                }
+
+            }
+
+			//表单新增产品
+            function addProductList(id){
+                var productId=$("#productId").val();
+                var productNum=$("#productNum").val();
+//                alert(productId);
+//                alert(productNum);
+                var str = '<tr>'+
+                    '<td>'+
+                    '<input type="text" name="productId" lay-verify="required" autocomplete="off" class="layui-input" readonly="readonly" value="'+
+                    productId+'">'+
+                    '</td>'+
+                    '<td>'+
+                    '<input type="number" name="productNum" lay-verify="required" autocomplete="off" class="layui-input" value="'+
+					productNum+'">'+
+                    '</td>'+
+                    '<td>'+
+                    '<a class="layui-btn layui-btn-xs" onclick="delCustomList(this)">删除</a>'+
+                    '</td>'+
+                    '</tr>';
+                $("#"+id).append(str);
+//				$("#productListForm").render();
+                layui.use(['form','laydate'], function() {
+                    var form = layui.form;
+                    form.render();
+                });
+                //重新初始化Iframe的高度
+                cframeInit();
+            }
+
+            //删除
+            function delCustomList(_this){
+                layui.use(['form','laydate'], function() {
+                    layer.confirm('确定要删除么？', {
+                        btn: ['确定', '取消'] //按钮
+                    }, function() {
+                        $(_this).parent().parent().remove();
+                        layer.msg('删除成功', {
+                            icon: 1
+                        });
+                    }, function() {
+                        layer.msg('取消删除', {
+                            time: 2000 //20s后自动关闭
+                        });
+                    });
+                });
+            }
+
+		</script>
+	</body>
+
+</html>

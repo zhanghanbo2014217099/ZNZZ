@@ -37,22 +37,17 @@
 	<body>
 		<div class="cBody">
 			<form id="addForm" class="layui-form" th:action="@{/preOrder}" method="post">
-				<div class="layui-form-item" th:each="product,productStat:${productList}">
-					<input type="hidden" th:name="'productList['+${productStat.index}+'].productId'" th:value="${product.productId}">
-					<input type="hidden" th:name="'productList['+${productStat.index}+'].productNum'" th:value="${product.productNum}">
-				</div>
-
 				<div class="layui-form-item">
 					<label class="layui-form-label">客户编号</label>
 					<div class="layui-input-inline shortInput">
 						<input type="text" name="customerId"  autocomplete="off" class="layui-input">
 					</div>
 				</div>
-				<!--<div class="layui-form-item">
+				<div class="layui-form-item">
 					<label class="layui-form-label">产品</label>
 					<div>
 					<div class="layui-input-inline shortInput">
-            					    &lt;!&ndash; 下拉框 &ndash;&gt;
+            					    <!-- 下拉框 -->
 							<select name="productList[0].productId">
 								<option value="1">木柱</option>
 								<option value="2">木板</option>
@@ -67,7 +62,7 @@
 					<div class="layui-input-inline shortInput">
 						<input type="text" name="productList[0].productNum" autocomplete="off" class="layui-input">
 					</div>
-				</div>-->
+				</div>
 
 				<div class="layui-form-item">
 					<label class="layui-form-label">预期日期</label>
@@ -147,7 +142,5 @@
 			</form>
 		</div>
 	</body>
-	<script>
 
-	</script>
 </html>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -28,7 +29,7 @@ public class OrderController {
             e.printStackTrace();
         }
 
-        return "tgls/preOrder/preOrder_add";
+        return "tgls/preOrder/product_add";
     }
     @GetMapping("/preOrderList")
     public String getOrderList(Model model){
@@ -83,5 +84,23 @@ public class OrderController {
             orderService.modifyStatus(orderId,10);
         }
         return "success";
+    }
+    @PostMapping("/testProduct")
+    public String test(String[] productId,Integer[] productNum,Model model){
+        if(productId==null||productId.length<=0){
+            return  "tgls/preOrder/product_add";
+        }else{
+            List<OrderProduct> list=new ArrayList<>();
+            for (int i=0;i<productId.length;i++){
+                OrderProduct orderProduct=new OrderProduct();
+                orderProduct.setProductId(productId[i]);
+                orderProduct.setProductNum(productNum[i]);
+                list.add(orderProduct);
+            }
+            model.addAttribute("productList",list);
+            System.out.println(list);
+            return "tgls/preOrder/preOrder_add";
+        }
+
     }
 }
