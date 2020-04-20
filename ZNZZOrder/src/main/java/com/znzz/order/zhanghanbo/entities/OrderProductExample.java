@@ -393,6 +393,66 @@ public class OrderProductExample {
             addCriterion("note not between", value1, value2, "note");
             return (Criteria) this;
         }
+
+        public Criteria andProductStateIsNull() {
+            addCriterion("product_state is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductStateIsNotNull() {
+            addCriterion("product_state is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductStateEqualTo(Integer value) {
+            addCriterion("product_state =", value, "productState");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductStateNotEqualTo(Integer value) {
+            addCriterion("product_state <>", value, "productState");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductStateGreaterThan(Integer value) {
+            addCriterion("product_state >", value, "productState");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductStateGreaterThanOrEqualTo(Integer value) {
+            addCriterion("product_state >=", value, "productState");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductStateLessThan(Integer value) {
+            addCriterion("product_state <", value, "productState");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductStateLessThanOrEqualTo(Integer value) {
+            addCriterion("product_state <=", value, "productState");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductStateIn(List<Integer> values) {
+            addCriterion("product_state in", values, "productState");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductStateNotIn(List<Integer> values) {
+            addCriterion("product_state not in", values, "productState");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductStateBetween(Integer value1, Integer value2) {
+            addCriterion("product_state between", value1, value2, "productState");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductStateNotBetween(Integer value1, Integer value2) {
+            addCriterion("product_state not between", value1, value2, "productState");
+            return (Criteria) this;
+        }
     }
 
     /**

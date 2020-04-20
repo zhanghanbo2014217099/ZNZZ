@@ -77,8 +77,24 @@
 						<td th:text="${#dates.format(order.expectDate, 'yyyy-MM-dd HH:mm')}"></td>
 
 						<td th:text="${order.sourceType}"></td>
-						<td th:text="${order.status}"></td>
+						<!--<td th:text="${order.status}"></td>-->
+						<td th:switch="${order.status}">
+							<label th:case="1">预订单</label>
+							<label th:case="2">完成预订单</label>
+							<label th:case="3">预订单审核通过</label>
+							<label th:case="4">预订单审核未通过</label>
+							<label th:case="5">正式订单</label>
+							<label th:case="6">生产中</label>
+							<label th:case="7">生产完成</label>
+							<label th:case="8">已发货</label>
+							<label th:case="9">已到货</label>
+							<label th:case="10">部分退单</label>
+							<label th:case="11">全部退货</label>
+							<label th:case="12">退货完成</label>
 
+
+
+						</td>
 						<td th:text="${order.totalPrice}"></td>
 						<td>
 							<button class="layui-btn layui-btn-xs" th:onclick="returnOrder([[${order.orderId}]])">退单申请</button>

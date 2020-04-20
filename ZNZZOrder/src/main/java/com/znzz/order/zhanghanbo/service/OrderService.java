@@ -86,6 +86,16 @@ public class OrderService {
         return  orderProductMapper.selectByExample(orderProductExample);
     }
     /*
+        获取订单可以退货的产品表
+     */
+    public List<OrderProduct> getOrderProductListWithStatus(String orderId){
+        OrderProductExample orderProductExample=new OrderProductExample();
+        OrderProductExample.Criteria criteria=orderProductExample.createCriteria();
+        criteria.andOrderIdEqualTo(orderId);
+        criteria.andProductStateEqualTo(0);
+        return  orderProductMapper.selectByExample(orderProductExample);
+    }
+    /*
         获取退单表
      */
     public List<ReturnOrder> getReturnOrderList(){
@@ -93,14 +103,18 @@ public class OrderService {
         return returnOrderMapper.selectByExample(returnOrderExample);
     }
     /*
-        退货申请，要删除订单关联的产品表
+        退货申请，要修改订单关联的产品表状态
      */
-    public void deleteOrderProduct(String orderId, String productId) {
+    public void modifyOrderProductStatus(String orderId, String productId) {
         OrderProductExample orderProductExample=new OrderProductExample();
         OrderProductExample.Criteria criteria=orderProductExample.createCriteria();
         criteria.andOrderIdEqualTo(orderId);
         criteria.andProductIdEqualTo(productId);
-        orderProductMapper.deleteByExample(orderProductExample);
+        OrderProduct orderProduct=new OrderProduct();
+        orderProduct.setProductState(1);
+        orderProductMapper.updateByExampleSelective(orderProduct,orderProductExample);
+
+
     }
     /*
         生成退货单
@@ -123,6 +137,7 @@ public class OrderService {
         OrderProductExample orderProductExample =new OrderProductExample();
         OrderProductExample.Criteria criteria = orderProductExample.createCriteria();
         criteria.andOrderIdEqualTo(orderId);
+        criteria.andProductStateEqualTo(0);
         List<OrderProduct> orderProductList = orderProductMapper.selectByExample(orderProductExample);
         if(orderProductList.size()>0){
             return true;

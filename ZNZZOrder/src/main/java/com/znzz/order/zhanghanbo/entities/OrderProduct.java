@@ -26,6 +26,11 @@ public class OrderProduct implements Serializable {
      */
     private String note;
 
+    /**
+     * 订单关联产品的状态，0为正常状态，1为退货状态
+     */
+    private Integer productState;
+
     private static final long serialVersionUID = 1L;
 
     public String getOrderId() {
@@ -60,6 +65,14 @@ public class OrderProduct implements Serializable {
         this.note = note;
     }
 
+    public Integer getProductState() {
+        return productState;
+    }
+
+    public void setProductState(Integer productState) {
+        this.productState = productState;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -75,7 +88,8 @@ public class OrderProduct implements Serializable {
         return (this.getOrderId() == null ? other.getOrderId() == null : this.getOrderId().equals(other.getOrderId()))
             && (this.getProductId() == null ? other.getProductId() == null : this.getProductId().equals(other.getProductId()))
             && (this.getProductNum() == null ? other.getProductNum() == null : this.getProductNum().equals(other.getProductNum()))
-            && (this.getNote() == null ? other.getNote() == null : this.getNote().equals(other.getNote()));
+            && (this.getNote() == null ? other.getNote() == null : this.getNote().equals(other.getNote()))
+            && (this.getProductState() == null ? other.getProductState() == null : this.getProductState().equals(other.getProductState()));
     }
 
     @Override
@@ -86,6 +100,7 @@ public class OrderProduct implements Serializable {
         result = prime * result + ((getProductId() == null) ? 0 : getProductId().hashCode());
         result = prime * result + ((getProductNum() == null) ? 0 : getProductNum().hashCode());
         result = prime * result + ((getNote() == null) ? 0 : getNote().hashCode());
+        result = prime * result + ((getProductState() == null) ? 0 : getProductState().hashCode());
         return result;
     }
 
@@ -99,6 +114,7 @@ public class OrderProduct implements Serializable {
         sb.append(", productId=").append(productId);
         sb.append(", productNum=").append(productNum);
         sb.append(", note=").append(note);
+        sb.append(", productState=").append(productState);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

@@ -188,23 +188,33 @@
 			//表单新增产品
             function addProductList(id){
                 var productId=$("#productId").val();
+
                 var productNum=$("#productNum").val();
+                var productIdnum=productId+'num';
+                var productIdnums=$("#"+productIdnum).val();
 //                alert(productId);
 //                alert(productNum);
                 var str = '<tr>'+
                     '<td>'+
-                    '<input type="text" name="productId" lay-verify="required" autocomplete="off" class="layui-input" readonly="readonly" value="'+
+                    '<input type="text" name="productId" lay-verify="required" autocomplete="off" class="layui-input" readonly="readonly" id="'+productId+'" value="'+
                     productId+'">'+
                     '</td>'+
                     '<td>'+
-                    '<input type="number" name="productNum" lay-verify="required" autocomplete="off" class="layui-input" value="'+
+                    '<input type="number" name="productNum" lay-verify="required" autocomplete="off" class="layui-input" id="'+productId+'num" value="'+
 					productNum+'">'+
                     '</td>'+
                     '<td>'+
                     '<a class="layui-btn layui-btn-xs" onclick="delCustomList(this)">删除</a>'+
                     '</td>'+
                     '</tr>';
-                $("#"+id).append(str);
+                if($("#"+productId).length>0){
+					//alert("success");
+                    $("#"+productIdnum).attr("value",parseInt(productNum)+parseInt(productIdnums));
+				}else{
+                    //alert("error");
+                    $("#"+id).append(str);
+				}
+
 //				$("#productListForm").render();
                 layui.use(['form','laydate'], function() {
                     var form = layui.form;

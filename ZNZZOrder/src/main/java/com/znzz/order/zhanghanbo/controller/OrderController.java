@@ -1,10 +1,8 @@
 package com.znzz.order.zhanghanbo.controller;
 
 import com.znzz.order.zhanghanbo.entities.Order;
-import com.znzz.order.zhanghanbo.entities.OrderExample;
 import com.znzz.order.zhanghanbo.entities.OrderProduct;
 import com.znzz.order.zhanghanbo.entities.ReturnOrder;
-import com.znzz.order.zhanghanbo.mapper.OrderMapper;
 import com.znzz.order.zhanghanbo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -70,13 +68,13 @@ public class OrderController {
     }
     @GetMapping(value="/returnOrderProductList/{orderId}")
     public String getReturnOrderProductList(@PathVariable String orderId,Model model){
-        model.addAttribute("productlist",orderService.getPreOrderProductList(orderId)) ;
+        model.addAttribute("productlist",orderService.getOrderProductListWithStatus(orderId)) ;
         return "tgls/returnOrder/returnOrder_product";
     }
     @GetMapping("/returnOrderProductApply/{orderId}/{productId}/{productNum}")
     @ResponseBody
     public String returnOrderProductApply(@PathVariable String orderId,@PathVariable String productId ,@PathVariable Float productNum){
-        orderService.deleteOrderProduct(orderId,productId);
+        orderService.modifyOrderProductStatus(orderId,productId);
         orderService.returnOrderApply(orderId,productId,productNum);
         if(!orderService.partReturn(orderId)) {
             orderService.modifyStatus(orderId, 11);

@@ -6,6 +6,7 @@
     <result column="product_id" jdbcType="VARCHAR" property="productId" />
     <result column="product_num" jdbcType="INTEGER" property="productNum" />
     <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="product_state" jdbcType="INTEGER" property="productState" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    order_id, product_id, product_num, note
+    order_id, product_id, product_num, note, product_state
   </sql>
   <select id="selectByExample" parameterType="com.znzz.order.zhanghanbo.entities.OrderProductExample" resultMap="BaseResultMap">
     select
@@ -98,9 +99,9 @@
   </delete>
   <insert id="insert" parameterType="com.znzz.order.zhanghanbo.entities.OrderProduct">
     insert into order_pro_list (order_id, product_id, product_num, 
-      note)
+      note, product_state)
     values (#{orderId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{productNum,jdbcType=INTEGER}, 
-      #{note,jdbcType=VARCHAR})
+      #{note,jdbcType=VARCHAR}, #{productState,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.znzz.order.zhanghanbo.entities.OrderProduct">
     insert into order_pro_list
@@ -117,6 +118,9 @@
       <if test="note != null">
         note,
       </if>
+      <if test="productState != null">
+        product_state,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orderId != null">
@@ -130,6 +134,9 @@
       </if>
       <if test="note != null">
         #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="productState != null">
+        #{productState,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -154,6 +161,9 @@
       <if test="record.note != null">
         note = #{record.note,jdbcType=VARCHAR},
       </if>
+      <if test="record.productState != null">
+        product_state = #{record.productState,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -164,7 +174,8 @@
     set order_id = #{record.orderId,jdbcType=VARCHAR},
       product_id = #{record.productId,jdbcType=VARCHAR},
       product_num = #{record.productNum,jdbcType=INTEGER},
-      note = #{record.note,jdbcType=VARCHAR}
+      note = #{record.note,jdbcType=VARCHAR},
+      product_state = #{record.productState,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

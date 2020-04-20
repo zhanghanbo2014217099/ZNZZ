@@ -58,6 +58,7 @@
 					<tr>
 						<th>产品编号</th>
 						<th>产品数量</th>
+						<th>产品状态</th>
 
 					</tr>
 				</thead>
@@ -67,7 +68,7 @@
 
 						<td th:text="${product.productNum}"></td>
 
-
+						<td th:text="${product.productState==0}?'正常':'退货'"></td>
 
 					</tr>
 					

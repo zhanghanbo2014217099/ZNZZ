@@ -72,7 +72,7 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label">预期日期</label>
 					<div class="layui-input-inline shortInput">
-						<input type="text" name="expectDate"  autocomplete="off" class="layui-input">
+						<input type="text" name="expectDate" class="layui-input test-item" id="getdatetime">
 					</div>
 				</div>
 			     
@@ -148,6 +148,16 @@
 		</div>
 	</body>
 	<script>
+        layui.use('laydate', function(){
+            var laydate = layui.laydate;
 
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#getdatetime' //指定元素
+				,type: 'datetime'
+				,formate:'yyyy-MM-dd HH:mm:ss'
+				,trigger:'click'
+            });
+        });
 	</script>
 </html>
